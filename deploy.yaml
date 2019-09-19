@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pg3-ctrl
+  namespace: pg3
+  labels:
+    system: pg3
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        system: pg3
+    spec:
+      containers:
+      - name: cluster
+        image: "healthsamurai/db3:latest"
+        imagePullPolicy: Always
+        env:
+        - name: TS
+          value: "4"
+        # ports:
+        # - containerPort: 8080
+        #   protocol: TCP
